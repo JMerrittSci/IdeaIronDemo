@@ -30,19 +30,366 @@
 
 <html>
     <head>
-        <title>Title</title>
+        <title>EarlyDev Insight</title>
     </head>
     <body>
         <div class="main">
         <div style="text-align:center">
                 <form action='/game', method='POST'>
 
-  <div><h3>Enter the Steam store URL of the Early Access game</h3></div>
+  <div><h1>EarlyDev Insight</h1><h3><br>Have an idea for an Early Access game?<br><br>Select at least one term describing the genre of your game:</h3></div>
   <p>
-    <input class="input" type="text" name="storeurl">
+        <select name="genre1" id="genre1" class="selectpicker form-control">
+            <option selected="selected" value = "-1">Select genre:</option>
+            <option value="0">2D</option>
+            <option value="1">4X</option>
+            <option value="2">Action</option>
+            <option value="3">Adventure</option>
+            <option value="4">Arcade</option>
+            <option value="5">Battle Royale</option>
+            <option value="6">Beat 'em up</option>
+            <option value="7">Board Game</option>
+            <option value="8">Building</option>
+            <option value="9">Card Game</option>
+            <option value="10">Casual</option>
+            <option value="11">Dungeon Crawler</option>
+            <option value="12">Education</option>
+            <option value="13">Exploration</option>
+            <option value="14">Fighting</option>
+            <option value="15">First-Person</option>
+            <option value="16">Flight</option>
+            <option value="17">God Game</option>
+            <option value="18">Hack and Slash</option>
+            <option value="19">Horror</option>
+            <option value="20">Indie</option>
+            <option value="21">Isometric</option>
+            <option value="22">MOBA</option>
+            <option value="23">Management</option>
+            <option value="24">Metroidvania</option>
+            <option value="25">Open World</option>
+            <option value="26">Platformer</option>
+            <option value="27">Puzzle</option>
+            <option value="28">PvP</option>
+            <option value="29">RPG</option>
+            <option value="30">Racing</option>
+            <option value="31">Real-Time</option>
+            <option value="32">Rhythm</option>
+            <option value="33">Rogue-like</option>
+            <option value="34">Runner</option>
+            <option value="35">Sandbox</option>
+            <option value="36">Shoot 'Em Up</option>
+            <option value="37">Shooter</option>
+            <option value="38">Side Scroller</option>
+            <option value="39">Simulation</option>
+            <option value="40">Software</option>
+            <option value="41">Space Sim</option>
+            <option value="42">Sports</option>
+            <option value="43">Stealth</option>
+            <option value="44">Strategy</option>
+            <option value="45">Survival</option>
+            <option value="46">Survival Horror</option>
+            <option value="47">Tactics</option>
+            <option value="48">Third Person</option>
+            <option value="49">Top-Down</option>
+            <option value="50">Turn-Based</option>
+            <option value="51">VR Only</option>
+            <option value="52">Visual Novel</option>
+            <option value="53">Walking Simulator</option>
+        </select>
+        <select name="genre2" id="genre2" class="selectpicker form-control">
+            <option selected="selected" value = "-1">Select genre:</option>
+            <option value="0">2D</option>
+            <option value="1">4X</option>
+            <option value="2">Action</option>
+            <option value="3">Adventure</option>
+            <option value="4">Arcade</option>
+            <option value="5">Battle Royale</option>
+            <option value="6">Beat 'em up</option>
+            <option value="7">Board Game</option>
+            <option value="8">Building</option>
+            <option value="9">Card Game</option>
+            <option value="10">Casual</option>
+            <option value="11">Dungeon Crawler</option>
+            <option value="12">Education</option>
+            <option value="13">Exploration</option>
+            <option value="14">Fighting</option>
+            <option value="15">First-Person</option>
+            <option value="16">Flight</option>
+            <option value="17">God Game</option>
+            <option value="18">Hack and Slash</option>
+            <option value="19">Horror</option>
+            <option value="20">Indie</option>
+            <option value="21">Isometric</option>
+            <option value="22">MOBA</option>
+            <option value="23">Management</option>
+            <option value="24">Metroidvania</option>
+            <option value="25">Open World</option>
+            <option value="26">Platformer</option>
+            <option value="27">Puzzle</option>
+            <option value="28">PvP</option>
+            <option value="29">RPG</option>
+            <option value="30">Racing</option>
+            <option value="31">Real-Time</option>
+            <option value="32">Rhythm</option>
+            <option value="33">Rogue-like</option>
+            <option value="34">Runner</option>
+            <option value="35">Sandbox</option>
+            <option value="36">Shoot 'Em Up</option>
+            <option value="37">Shooter</option>
+            <option value="38">Side Scroller</option>
+            <option value="39">Simulation</option>
+            <option value="40">Software</option>
+            <option value="41">Space Sim</option>
+            <option value="42">Sports</option>
+            <option value="43">Stealth</option>
+            <option value="44">Strategy</option>
+            <option value="45">Survival</option>
+            <option value="46">Survival Horror</option>
+            <option value="47">Tactics</option>
+            <option value="48">Third Person</option>
+            <option value="49">Top-Down</option>
+            <option value="50">Turn-Based</option>
+            <option value="51">VR Only</option>
+            <option value="52">Visual Novel</option>
+            <option value="53">Walking Simulator</option>
+        </select>
+        <select name="genre3" id="genre3" class="selectpicker form-control">
+            <option selected="selected" value = "-1">Select genre:</option>
+            <option value="0">2D</option>
+            <option value="1">4X</option>
+            <option value="2">Action</option>
+            <option value="3">Adventure</option>
+            <option value="4">Arcade</option>
+            <option value="5">Battle Royale</option>
+            <option value="6">Beat 'em up</option>
+            <option value="7">Board Game</option>
+            <option value="8">Building</option>
+            <option value="9">Card Game</option>
+            <option value="10">Casual</option>
+            <option value="11">Dungeon Crawler</option>
+            <option value="12">Education</option>
+            <option value="13">Exploration</option>
+            <option value="14">Fighting</option>
+            <option value="15">First-Person</option>
+            <option value="16">Flight</option>
+            <option value="17">God Game</option>
+            <option value="18">Hack and Slash</option>
+            <option value="19">Horror</option>
+            <option value="20">Indie</option>
+            <option value="21">Isometric</option>
+            <option value="22">MOBA</option>
+            <option value="23">Management</option>
+            <option value="24">Metroidvania</option>
+            <option value="25">Open World</option>
+            <option value="26">Platformer</option>
+            <option value="27">Puzzle</option>
+            <option value="28">PvP</option>
+            <option value="29">RPG</option>
+            <option value="30">Racing</option>
+            <option value="31">Real-Time</option>
+            <option value="32">Rhythm</option>
+            <option value="33">Rogue-like</option>
+            <option value="34">Runner</option>
+            <option value="35">Sandbox</option>
+            <option value="36">Shoot 'Em Up</option>
+            <option value="37">Shooter</option>
+            <option value="38">Side Scroller</option>
+            <option value="39">Simulation</option>
+            <option value="40">Software</option>
+            <option value="41">Space Sim</option>
+            <option value="42">Sports</option>
+            <option value="43">Stealth</option>
+            <option value="44">Strategy</option>
+            <option value="45">Survival</option>
+            <option value="46">Survival Horror</option>
+            <option value="47">Tactics</option>
+            <option value="48">Third Person</option>
+            <option value="49">Top-Down</option>
+            <option value="50">Turn-Based</option>
+            <option value="51">VR Only</option>
+            <option value="52">Visual Novel</option>
+            <option value="53">Walking Simulator</option>
+        </select>
+  </p><br><br>
+  <div><h3>Do any of these terms describe the theme of your game?</h3></div>
+  <p>
+        <select name="theme1" id="theme1" class="selectpicker form-control">
+            <option selected="selected" value = "-1">Select theme:</option>
+            <option value="54">Anime</option>
+            <option value="55">Atmospheric</option>
+            <option value="56">Colorful</option>
+            <option value="57">Cute</option>
+            <option value="58">Cyberpunk</option>
+            <option value="59">Dinosaurs</option>
+            <option value="60">Fantasy</option>
+            <option value="61">Funny</option>
+            <option value="62">Futuristic</option>
+            <option value="63">Historical</option>
+            <option value="64">Lovecraftian</option>
+            <option value="65">Magic</option>
+            <option value="66">Medieval</option>
+            <option value="67">Military</option>
+            <option value="68">Minimalist</option>
+            <option value="69">Music</option>
+            <option value="70">Naval</option>
+            <option value="71">Post-apocalyptic</option>
+            <option value="72">Realistic</option>
+            <option value="73">Relaxing</option>
+            <option value="74">Retro</option>
+            <option value="75">Robots</option>
+            <option value="76">Sci-fi</option>
+            <option value="77">Science</option>
+            <option value="78">Space</option>
+            <option value="79">Steampunk</option>
+            <option value="80">Tactical</option>
+            <option value="81">War</option>
+            <option value="82">Western</option>
+            <option value="83">Zombies</option>
+        </select>
+        <select name="theme2" id="theme2" class="selectpicker form-control">
+            <option selected="selected" value = "-1">Select theme:</option>
+            <option value="54">Anime</option>
+            <option value="55">Atmospheric</option>
+            <option value="56">Colorful</option>
+            <option value="57">Cute</option>
+            <option value="58">Cyberpunk</option>
+            <option value="59">Dinosaurs</option>
+            <option value="60">Fantasy</option>
+            <option value="61">Funny</option>
+            <option value="62">Futuristic</option>
+            <option value="63">Historical</option>
+            <option value="64">Lovecraftian</option>
+            <option value="65">Magic</option>
+            <option value="66">Medieval</option>
+            <option value="67">Military</option>
+            <option value="68">Minimalist</option>
+            <option value="69">Music</option>
+            <option value="70">Naval</option>
+            <option value="71">Post-apocalyptic</option>
+            <option value="72">Realistic</option>
+            <option value="73">Relaxing</option>
+            <option value="74">Retro</option>
+            <option value="75">Robots</option>
+            <option value="76">Sci-fi</option>
+            <option value="77">Science</option>
+            <option value="78">Space</option>
+            <option value="79">Steampunk</option>
+            <option value="80">Tactical</option>
+            <option value="81">War</option>
+            <option value="82">Western</option>
+            <option value="83">Zombies</option>
+        </select>
+        <select name="theme3" id="theme3" class="selectpicker form-control">
+            <option selected="selected" value = "-1">Select theme:</option>
+            <option value="54">Anime</option>
+            <option value="55">Atmospheric</option>
+            <option value="56">Colorful</option>
+            <option value="57">Cute</option>
+            <option value="58">Cyberpunk</option>
+            <option value="59">Dinosaurs</option>
+            <option value="60">Fantasy</option>
+            <option value="61">Funny</option>
+            <option value="62">Futuristic</option>
+            <option value="63">Historical</option>
+            <option value="64">Lovecraftian</option>
+            <option value="65">Magic</option>
+            <option value="66">Medieval</option>
+            <option value="67">Military</option>
+            <option value="68">Minimalist</option>
+            <option value="69">Music</option>
+            <option value="70">Naval</option>
+            <option value="71">Post-apocalyptic</option>
+            <option value="72">Realistic</option>
+            <option value="73">Relaxing</option>
+            <option value="74">Retro</option>
+            <option value="75">Robots</option>
+            <option value="76">Sci-fi</option>
+            <option value="77">Science</option>
+            <option value="78">Space</option>
+            <option value="79">Steampunk</option>
+            <option value="80">Tactical</option>
+            <option value="81">War</option>
+            <option value="82">Western</option>
+            <option value="83">Zombies</option>
+        </select>
+  </p><br><br>
+  <div><h3>Does your game include any of these features?</h3></div>
+  <p>
+        <select name="feature1" id="feature1" class="selectpicker form-control">
+            <option selected="selected" value = "-1">Select feature:</option>
+            <option value="84">Character Customization</option>
+            <option value="85">Co-op</option>
+            <option value="86">Competitive</option>
+            <option value="87">Controller</option>
+            <option value="88">Crafting</option>
+            <option value="89">Difficult</option>
+            <option value="90">Downloadable Content</option>
+            <option value="91">Fast-Paced</option>
+            <option value="92">In-App Purchases</option>
+            <option value="93">Level Editor</option>
+            <option value="94">Massively Multiplayer</option>
+            <option value="95">Multiplayer</option>
+            <option value="96">Physics</option>
+            <option value="97">Pixel Graphics</option>
+            <option value="98">Procedural Generation</option>
+            <option value="99">Resource Management</option>
+            <option value="100">Rogue-lite</option>
+            <option value="101">Split Screen</option>
+            <option value="102">Story Rich</option>
+            <option value="103">Team-Based</option>
+            <option value="104">VR</option>
+        </select>
+        <select name="feature2" id="feature2" class="selectpicker form-control">
+            <option selected="selected" value = "-1">Select feature:</option>
+            <option value="84">Character Customization</option>
+            <option value="85">Co-op</option>
+            <option value="86">Competitive</option>
+            <option value="87">Controller</option>
+            <option value="88">Crafting</option>
+            <option value="89">Difficult</option>
+            <option value="90">Downloadable Content</option>
+            <option value="91">Fast-Paced</option>
+            <option value="92">In-App Purchases</option>
+            <option value="93">Level Editor</option>
+            <option value="94">Massively Multiplayer</option>
+            <option value="95">Multiplayer</option>
+            <option value="96">Physics</option>
+            <option value="97">Pixel Graphics</option>
+            <option value="98">Procedural Generation</option>
+            <option value="99">Resource Management</option>
+            <option value="100">Rogue-lite</option>
+            <option value="101">Split Screen</option>
+            <option value="102">Story Rich</option>
+            <option value="103">Team-Based</option>
+            <option value="104">VR</option>
+        </select>
+        <select name="feature3" id="feature3" class="selectpicker form-control">
+            <option selected="selected" value = "-1">Select feature:</option>
+            <option value="84">Character Customization</option>
+            <option value="85">Co-op</option>
+            <option value="86">Competitive</option>
+            <option value="87">Controller</option>
+            <option value="88">Crafting</option>
+            <option value="89">Difficult</option>
+            <option value="90">Downloadable Content</option>
+            <option value="91">Fast-Paced</option>
+            <option value="92">In-App Purchases</option>
+            <option value="93">Level Editor</option>
+            <option value="94">Massively Multiplayer</option>
+            <option value="95">Multiplayer</option>
+            <option value="96">Physics</option>
+            <option value="97">Pixel Graphics</option>
+            <option value="98">Procedural Generation</option>
+            <option value="99">Resource Management</option>
+            <option value="100">Rogue-lite</option>
+            <option value="101">Split Screen</option>
+            <option value="102">Story Rich</option>
+            <option value="103">Team-Based</option>
+            <option value="104">VR</option>
+        </select>
   </p>
-  <br>
-  <button type="submit">Check it!</button>
+  <br><br>
+  <button type="submit">Go!</button>
 </form>
         </div></div>
 

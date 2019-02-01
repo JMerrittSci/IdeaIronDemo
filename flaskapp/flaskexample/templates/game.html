@@ -26,25 +26,52 @@
  color: #2E3759;
  }
 
+.column {
+  float: left;
+  width: 33.33%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 </style>
 
 <html>
     <head>
-        <title>{{apptitle}} - summary</title>
+        <title>EarlyDev Insight recommendation</title>
     </head>
     <body>
         <div class="main">
         <div style="text-align:center">
-        <h1>{{apptitle}}</h1>
-        <img src="{{header_url}}">
-        {% for temp in divstrs %}
-        <h3>{{temp}}</h3>
-        {% endfor %}
-        {% if not foundrecord %}
-        <h2>Game not Early Access or record not found!</h2>
+        {% if error_page == True %}
+        <h2>Please select at least two tags!</h2>
         {% else %}
-        <h2>User reviews predicted positive at launch: {{prediction}}%</h2>
+        <h1>Recommendation</h1>
+        {% autoescape false %}
+        <h3><br>{{output_str}}<br><br>
+           We think the following current or former Early Access games may be similar to yours:<br><br>
+<div class="row">
+  <div class="column"><a href="{{url0}}">{{name0}}<br>
+        <img src="{{img0}}"></img></a></div>
+  <div class="column"><a href="{{url1}}">{{name1}}<br>
+        <img src="{{img1}}"></img></a></div>
+  <div class="column"><a href="{{url2}}">{{name2}}<br>
+        <img src="{{img2}}"></img></a></div>
+</div>
+        </h3><br>
+        {% endautoescape %}
+
+
+
+
+
+
+
         {% endif %}
         </div></div>
+
     </body>
 </html>
