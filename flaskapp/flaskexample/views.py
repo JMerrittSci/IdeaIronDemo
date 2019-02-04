@@ -94,7 +94,8 @@ def game_page():
     
     def split_vec_norm(x,idx_start,idx_end):
         if np.linalg.norm(x[idx_start:idx_end])!=0:
-            x[idx_start:idx_end]=x[idx_start:idx_end]/np.linalg.norm(x[idx_start:idx_end])
+            if np.linalg.norm(x[idx_start:idx_end])<0.9999 or np.linalg.norm(x[idx_start:idx_end])>1.0001:
+                x[idx_start:idx_end]=x[idx_start:idx_end]/np.linalg.norm(x[idx_start:idx_end])
         return x
 
     def normalized_vec(x):
@@ -140,10 +141,16 @@ def game_page():
         round=0
         while len(bigger)==0 and len(smaller)==0 and round<4:
             round+=1
-            
+                
             for i in range(2**len(used_vars)-1):
                 temp_v=perturbed_vec(false_normal_vec,i,used_vars,0.05*round)
                 p_vecs.append(false_normalized_vec(temp_v,true_normal_vec))
+                #temp_v=perturbed_vec(false_normal_vec,i,used_vars,0.10*round)
+                #p_vecs.append(false_normalized_vec(temp_v,true_normal_vec))
+                #temp_v=perturbed_vec(false_normal_vec,i,used_vars,0.15*round)
+                #p_vecs.append(false_normalized_vec(temp_v,true_normal_vec))
+                #temp_v=perturbed_vec(false_normal_vec,i,used_vars,0.20*round)
+                #p_vecs.append(false_normalized_vec(temp_v,true_normal_vec))
 
             #for x in np.vstack(p_vecs):
             #    print(x)
@@ -171,7 +178,7 @@ def game_page():
                 if len(bigger)>1:
                     for i in range(1,len(bigger)-1):
                         output_string+=", "+bigger[i]
-                    for i in range(len(bigger)-1,len(bigger)-2):
+                    for i in range(len(bigger)-1,len(bigger)):
                         output_string+=" and "+bigger[-1]
                 output_string+="</h2><h3>"
                 if len(smaller)>0:
@@ -179,7 +186,7 @@ def game_page():
                     if len(smaller)>1:
                         for i in range(1,len(smaller)-1):
                             output_string+=", "+smaller[i]
-                        for i in range(len(smaller)-1,len(smaller)-2):
+                        for i in range(len(smaller)-1,len(smaller)):
                             output_string+=" and "+smaller[-1]
                     output_string+="</h2><h3>"
             elif len(smaller)>0:
@@ -187,7 +194,7 @@ def game_page():
                 if len(smaller)>1:
                     for i in range(1,len(smaller)-1):
                         output_string+=", "+smaller[i]
-                    for i in range(len(smaller)-1,len(smaller)-2):
+                    for i in range(len(smaller)-1,len(smaller)):
                         output_string+=" and "+smaller[-1]
                 output_string+="</h2><h3>"
         apps_df['log']=apps_df['first_month_num_reviews'].apply(lambda x: max(1,np.log(x)))
