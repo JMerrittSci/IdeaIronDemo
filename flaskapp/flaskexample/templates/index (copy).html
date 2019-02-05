@@ -1,64 +1,31 @@
 <style>
 
-body {
-  background: #303030;
-}
  .main {
- background-color: rgba(200, 200, 255, 0.2);
+ background-color: rgba(255, 255, 255, 0.5);
  margin-top: 100px;
-margin-right:50px;
-margin-left:50px;
-padding-top: 50px;
  padding-bottom: 50px;
-    min-width: 800;
-
  }
  .main h1 {
- font-size: 4em;
+ font-size: 3.5em;
  font-family: Arial;
- color: #fff;
+ color: #2E3759;
  }
  .main h2 {
  font-size: 2em;
  font-family: Arial;
- color: #fff;
+ color: #2E3759;
  }
  .main h3 {
- font-size: 1.3em;
+ font-size: 1em;
  font-family: Arial;
- color: #fff;
+ color: #2E3759;
  }
  .main p {
  font-size:1em;
  font-family: Arial;
- color: #fff;
+ color: #2E3759;
  }
-
-#maintitle {
- font-size: 5em;
- font-family: Arial;
- color: #CCCCFF;
- }
-
-#maintitle .tagline {
- color: #AAAAFF;
- font-size: 0.25em !important;
- font-family: Arial;
- 
- }
-
 select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
-  outline: 0;
-  box-shadow: none;
-  border: 0 !important;
-  background: #2c3e50;
-  background-image: none;
-}
-button {
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
@@ -71,10 +38,9 @@ button {
 }
 /* Custom Select */
 .selectdiv {
-  margin: 0 auto;
   position: relative;
   display: block;
-  width: 250;
+  width: 180;
   height: 30;
   line-height: 3;
   background: #2c3e50;
@@ -82,35 +48,10 @@ button {
   border-radius: .25em;
 }
 select {
-  width: 250;
+  width: 180;
   height: 30;
   margin: 0;
-  padding: 0 1em 0em 0em;
- font-size: 1.2em;
-text-align-last: center;
-  color: #fff;
-  cursor: pointer;
-}
-
-.buttondiv {
-  margin: 0 auto;
-  position: relative;
-  display: block;
-  width: 120;
-  height: 30;
-  line-height: 3;
-  background: #2c3e50;
-  overflow: hidden;
-  border-radius: .25em;
-}
-
-button {
-  width: 100;
-  height: 30;
-  margin: 0;
-  padding: 0 0em 0em 0em;
- font-size: 1.2em;
-text-align-last: center;
+  padding: 0 0 0 .5em;
   color: #fff;
   cursor: pointer;
 }
@@ -138,38 +79,27 @@ select::-ms-expand {
   transition: .25s all ease;
 }
 
-.container {
-    width: 40%;
-    min-width: 800;
-    margin: 0 auto;
-}
-.leftcol {
-    float: left;
-    width: 33%;
-}
-.centercol {
-    float: left;
-    width: 33%;
-}
-.rightcol {
-    float: left;
-    width: 33%;
-}
+
 </style>
 
 <html>
     <head>
-        <title>Idea Iron: Gaming out the wrinkles for an Early Access release</title>
+        <title>EarlyDev Insight</title>
     </head>
-    <body>
+    <body><div class="selectdiv">
+<select name="genre1" id="genre1" class="selectpicker form-control">
+            <option selected="selected" value = "-1">Select genre:</option>
+            <option value="52">Visual Novel</option>
+            <option value="53">Walking Simulator</option>
+        </select></div>
         <div class="main">
         <div style="text-align:center">
                 <form action='/game', method='POST'>
 
-  <div><div id="maintitle"><b>Idea Iron</b><br><div class="tagline"><i>Gaming out the wrinkles for an Early Access release</i></div></div><br><h3>Have an idea for an Early Access game?<br><br>Select at least one term describing the genre of your game:</h3></div>
-  <p> <div class="container"><div class="leftcol">
-       <div class="selectdiv"><select name="genre1" id="genre1" class="selectpicker form-control">
-            <option selected="selected" value = "-1">---</option>
+  <div><h1>EarlyDev Insight</h1><h3><br>Have an idea for an Early Access game?<br><br>Select at least one term describing the genre of your game:</h3></div>
+  <p>
+        <div class="selectdiv"><select name="genre1" id="genre1" class="selectpicker form-control">
+            <option selected="selected" value = "-1">Select genre:</option>
             <option value="0">2D</option>
             <option value="1">4X</option>
             <option value="2">Action</option>
@@ -224,9 +154,9 @@ select::-ms-expand {
             <option value="51">VR Only</option>
             <option value="52">Visual Novel</option>
             <option value="53">Walking Simulator</option>
-        </select></div></div><div class="centercol">
-        <div class="selectdiv"><select name="genre2" id="genre2" class="selectpicker form-control">
-            <option selected="selected" value = "-1">---</option>
+        </select></div>
+        <select name="genre2" id="genre2" class="selectpicker form-control">
+            <option selected="selected" value = "-1">Select genre:</option>
             <option value="0">2D</option>
             <option value="1">4X</option>
             <option value="2">Action</option>
@@ -281,9 +211,9 @@ select::-ms-expand {
             <option value="51">VR Only</option>
             <option value="52">Visual Novel</option>
             <option value="53">Walking Simulator</option>
-        </select></div></div><div class="rightcol">
-        <div class="selectdiv"><select name="genre3" id="genre3" class="selectpicker form-control">
-            <option selected="selected" value = "-1">---</option>
+        </select>
+        <select name="genre3" id="genre3" class="selectpicker form-control">
+            <option selected="selected" value = "-1">Select genre:</option>
             <option value="0">2D</option>
             <option value="1">4X</option>
             <option value="2">Action</option>
@@ -338,16 +268,12 @@ select::-ms-expand {
             <option value="51">VR Only</option>
             <option value="52">Visual Novel</option>
             <option value="53">Walking Simulator</option>
-        </select></div></div></div>
-  </p>
-
-
-<br><br><br>
+        </select>
+  </p><br><br>
   <div><h3>Do any of these terms describe the theme of your game?</h3></div>
-  <p><div class="container"><div class="leftcol">
-       <div class="selectdiv">
+  <p>
         <select name="theme1" id="theme1" class="selectpicker form-control">
-            <option selected="selected" value = "-1">---</option>
+            <option selected="selected" value = "-1">Select theme:</option>
             <option value="54">Anime</option>
             <option value="55">Atmospheric</option>
             <option value="56">Colorful</option>
@@ -378,9 +304,9 @@ select::-ms-expand {
             <option value="81">War</option>
             <option value="82">Western</option>
             <option value="83">Zombies</option>
-        </select></div></div><div class="centercol"><div class="selectdiv">
+        </select>
         <select name="theme2" id="theme2" class="selectpicker form-control">
-            <option selected="selected" value = "-1">---</option>
+            <option selected="selected" value = "-1">Select theme:</option>
             <option value="54">Anime</option>
             <option value="55">Atmospheric</option>
             <option value="56">Colorful</option>
@@ -411,9 +337,9 @@ select::-ms-expand {
             <option value="81">War</option>
             <option value="82">Western</option>
             <option value="83">Zombies</option>
-        </select></div></div><div class="rightcol"><div class="selectdiv">
+        </select>
         <select name="theme3" id="theme3" class="selectpicker form-control">
-            <option selected="selected" value = "-1">---</option>
+            <option selected="selected" value = "-1">Select theme:</option>
             <option value="54">Anime</option>
             <option value="55">Atmospheric</option>
             <option value="56">Colorful</option>
@@ -444,15 +370,12 @@ select::-ms-expand {
             <option value="81">War</option>
             <option value="82">Western</option>
             <option value="83">Zombies</option>
-        </select></div></div></div>
-  </p><br>
-
-<br><br>
+        </select>
+  </p><br><br>
   <div><h3>Does your game include any of these features?</h3></div>
-  <p><div class="container"><div class="leftcol">
-       <div class="selectdiv">
+  <p>
         <select name="feature1" id="feature1" class="selectpicker form-control">
-            <option selected="selected" value = "-1">---</option>
+            <option selected="selected" value = "-1">Select feature:</option>
             <option value="84">Character Customization</option>
             <option value="85">Co-op</option>
             <option value="86">Competitive</option>
@@ -474,9 +397,9 @@ select::-ms-expand {
             <option value="102">Story Rich</option>
             <option value="103">Team-Based</option>
             <option value="104">VR</option>
-        </select></div></div><div class="centercol"><div class="selectdiv">
+        </select>
         <select name="feature2" id="feature2" class="selectpicker form-control">
-            <option selected="selected" value = "-1">---</option>
+            <option selected="selected" value = "-1">Select feature:</option>
             <option value="84">Character Customization</option>
             <option value="85">Co-op</option>
             <option value="86">Competitive</option>
@@ -498,9 +421,9 @@ select::-ms-expand {
             <option value="102">Story Rich</option>
             <option value="103">Team-Based</option>
             <option value="104">VR</option>
-        </select></div></div><div class="rightcol"><div class="selectdiv">
+        </select>
         <select name="feature3" id="feature3" class="selectpicker form-control">
-            <option selected="selected" value = "-1">---</option>
+            <option selected="selected" value = "-1">Select feature:</option>
             <option value="84">Character Customization</option>
             <option value="85">Co-op</option>
             <option value="86">Competitive</option>
@@ -522,10 +445,10 @@ select::-ms-expand {
             <option value="102">Story Rich</option>
             <option value="103">Team-Based</option>
             <option value="104">VR</option>
-        </select></div></div></div>
+        </select>
   </p>
-  <br><br><br><br>
-  <div class="buttondiv"><button type="submit">Go!</button></div>
+  <br><br>
+  <button type="submit">Go!</button>
 </form>
         </div></div>
 

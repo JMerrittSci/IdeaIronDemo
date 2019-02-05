@@ -174,7 +174,10 @@ def game_page():
             output_string="</h3><h2>We couldn't find a way to suggest a focus for your idea! Your idea may be unusual, or your input may be too vague to generate a response (try adding more tags).</h2><h3>"
         else:
             if len(bigger)>0:
-                output_string="We suggest <i>emphasizing</i> the following aspect(s) of your idea at launch to increase its appeal to the Steam userbase:<br><h2>"+bigger[0]
+                output_string="We suggest <i>emphasizing</i> the following aspect"
+                if len(bigger)>1:
+                    output_string+="s"
+                output_string+=" of your idea at launch to increase its appeal to the Steam userbase:<br><h2>"+bigger[0]
                 if len(bigger)>1:
                     for i in range(1,len(bigger)-1):
                         output_string+=", "+bigger[i]
@@ -182,7 +185,10 @@ def game_page():
                         output_string+=" and "+bigger[-1]
                 output_string+="</h2><h3>"
                 if len(smaller)>0:
-                    output_string+="<br><br><br>The following aspect(s) of your idea <i>may be less important</i>:<br><h2>"+smaller[0]
+                    output_string+="<br><br><br>The following aspect"
+                    if len(smaller)>1:
+                        output_string+="s"
+                    output_string+=" of your idea <i>may be less important</i>:<br><h2>"+smaller[0]
                     if len(smaller)>1:
                         for i in range(1,len(smaller)-1):
                             output_string+=", "+smaller[i]
@@ -190,7 +196,10 @@ def game_page():
                             output_string+=" and "+smaller[-1]
                     output_string+="</h2><h3>"
             elif len(smaller)>0:
-                output_string="We suggest <i>de</i>-emphasizing the following aspect(s) of your idea at launch to increase its appeal to the Steam userbase:<br><h2>"+smaller[0]
+                output_string="We suggest <i>de</i>-emphasizing the following aspect"
+                if len(smaller)>1:
+                    output_string+="s"
+                output_string+=" of your idea at launch to increase its appeal to the Steam userbase:<br><h2>"+smaller[0]
                 if len(smaller)>1:
                     for i in range(1,len(smaller)-1):
                         output_string+=", "+smaller[i]
