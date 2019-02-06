@@ -6,15 +6,31 @@ body {
  .main {
  background-color: rgba(200, 200, 255, 0.2);
  margin-top: 30px;
+margin-right:50px;
+margin-left:50px;
  padding-bottom: 25px;
 padding-top: 5px;
     min-width: 800;
 
  }
+
+#maintitle {
+ font-size: 5em;
+ font-family: Arial;
+ color: #CCCCFF;
+ }
+
+#maintitle .tagline {
+ color: #EEEEFF;
+ font-size: 0.25em !important;
+ font-family: Arial;
+ 
+ }
+
  .main h1 {
  font-size: 4em;
  font-family: Arial;
- color: #fff;
+ color: #CCCCFF;
  }
  .main h2 {
  font-size: 2em;
@@ -51,7 +67,7 @@ a:active {color:#ddaaff;}
 
 <html>
     <head>
-        <title>EarlyDev Insight recommendation</title>
+        <title>Idea Iron Recommendation</title>
     </head>
     <body>
         <div class="main">
@@ -59,9 +75,11 @@ a:active {color:#ddaaff;}
         {% if error_page == True %}
         <h2>Please select at least two tags!</h2>
         {% else %}
-        <h1>Our Recommendation</h1>
+        <div id="maintitle"><b>Our recommendation</b><br><div class="tagline"><br><i>We predict your game may receive up to <b>{{ratio}}%</b> more reviews in the first month after following this recommendation!</i></div></div>
+        
+        <h3>
         {% autoescape false %}
-        <h3><br>{{output_str}}<br><br>
+        <br>{{output_str}}<br><br>
            We think the following current or former Early Access games may be similar to yours:<br><br>
 <div class="row">
   <div class="column"><a href="{{url0}}">{{name0}}<br>

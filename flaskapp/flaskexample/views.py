@@ -1,7 +1,6 @@
 from flask import render_template
 from flask import request 
 from flaskexample import app
-from flaskexample.a_Model import ModelIt
 from sqlalchemy import create_engine
 from sqlalchemy_utils import database_exists, create_database
 from sklearn.ensemble import RandomForestRegressor
@@ -22,7 +21,11 @@ def index():
 
 @app.route('/game',  methods=['GET','POST'])
 def game_page():
-    
+    db_name=''
+    db_user=''
+    db_password=''
+    new_ratio=0
+    con=psycopg2.connect(database=db_name,user=db_user,host='localhost',password=db_password)
     output_string=""
     name0=""
     name1=""
@@ -63,8 +66,9 @@ def game_page():
 
     labels=final_genres_list+final_themes_list+final_features_list
 
-    apps_df=pd.read_csv(os.path.join('csv','apps.csv')).set_index('appid')
-    norm_game_vecs_df=pd.read_csv(os.path.join('csv','catnormalized.csv')).set_index('appid')
+    apps_df=pd.read_sql_query("SELECT * FROM apps_table",con).drop('index',axis=1).set_index('appid')
+    norm_game_vecs_df=pd.read_sql_query("SELECT * FROM gvecs_table",con).drop('index',axis=1).set_index('appid')
+    
     training_vecs_df=pd.DataFrame.copy(norm_game_vecs_df)
     col_names=training_vecs_df.columns.tolist()
     for i in col_names:
@@ -138,43 +142,42 @@ def game_page():
         
         bigger=[]
         smaller=[]
-        round=0
-        while len(bigger)==0 and len(smaller)==0 and round<4:
-            round+=1
-                
-            for i in range(2**len(used_vars)-1):
-                temp_v=perturbed_vec(false_normal_vec,i,used_vars,0.05*round)
-                p_vecs.append(false_normalized_vec(temp_v,true_normal_vec))
-                #temp_v=perturbed_vec(false_normal_vec,i,used_vars,0.10*round)
-                #p_vecs.append(false_normalized_vec(temp_v,true_normal_vec))
-                #temp_v=perturbed_vec(false_normal_vec,i,used_vars,0.15*round)
-                #p_vecs.append(false_normalized_vec(temp_v,true_normal_vec))
-                #temp_v=perturbed_vec(false_normal_vec,i,used_vars,0.20*round)
-                #p_vecs.append(false_normalized_vec(temp_v,true_normal_vec))
-
-            #for x in np.vstack(p_vecs):
-            #    print(x)
 
 
-            p_df=pd.DataFrame(np.vstack(p_vecs),columns=norm_game_vecs_df.columns)
-            col_names=p_df.columns.tolist()
-            for i in col_names:
-                p_df[i+i]=p_df[i]*p_df[i]
-            p_df['one']=1
+        for i in range(2**len(used_vars)-1):
+            temp_v=perturbed_vec(false_normal_vec,i,used_vars,0.05)
+            p_vecs.append(false_normalized_vec(temp_v,true_normal_vec))
+            temp_v=perturbed_vec(false_normal_vec,i,used_vars,0.1)
+            p_vecs.append(false_normalized_vec(temp_v,true_normal_vec))
+            temp_v=perturbed_vec(false_normal_vec,i,used_vars,0.15)
+            p_vecs.append(false_normalized_vec(temp_v,true_normal_vec))
+            temp_v=perturbed_vec(false_normal_vec,i,used_vars,0.2)
+            p_vecs.append(false_normalized_vec(temp_v,true_normal_vec))
+        
 
-            predicted=regressor.predict(p_df.values)
 
-            max_idx=np.argmax(predicted)
-            for x in used_vars:
-                if p_vecs[max_idx][x]>false_normal_vec[x]:
-                    bigger.append(labels[x])
-                elif p_vecs[max_idx][x]<false_normal_vec[x]:
-                    smaller.append(labels[x])
+        p_df=pd.DataFrame(np.vstack(p_vecs),columns=norm_game_vecs_df.columns)
+        col_names=p_df.columns.tolist()
+        for i in col_names:
+            p_df[i+i]=p_df[i]*p_df[i]
+        p_df['one']=1
+
+        predicted=regressor.predict(p_df.values)
+        
+        max_idx=np.argmax(predicted)
+        new_ratio=max(1,int(100*(predicted[max_idx]-predicted[0])/predicted[0]+0.5))
+        for x in used_vars:
+            if p_vecs[max_idx][x]>false_normal_vec[x]:
+                bigger.append(labels[x])
+            elif p_vecs[max_idx][x]<false_normal_vec[x]:
+                smaller.append(labels[x])
+
         if len(bigger)==0 and len(smaller)==0:
             output_string="</h3><h2>We couldn't find a way to suggest a focus for your idea! Your idea may be unusual, or your input may be too vague to generate a response (try adding more tags).</h2><h3>"
         else:
+            output_string=""
             if len(bigger)>0:
-                output_string="We suggest <i>emphasizing</i> the following aspect"
+                output_string+="We suggest <i>emphasizing</i> the following aspect"
                 if len(bigger)>1:
                     output_string+="s"
                 output_string+=" of your idea at launch to increase its appeal to the Steam userbase:<br><h2>"+bigger[0]
@@ -196,7 +199,7 @@ def game_page():
                             output_string+=" and "+smaller[-1]
                     output_string+="</h2><h3>"
             elif len(smaller)>0:
-                output_string="We suggest <i>de</i>-emphasizing the following aspect"
+                output_string+="We suggest <i>de</i>-emphasizing the following aspect"
                 if len(smaller)>1:
                     output_string+="s"
                 output_string+=" of your idea at launch to increase its appeal to the Steam userbase:<br><h2>"+smaller[0]
@@ -234,81 +237,8 @@ def game_page():
         img0='https://steamcdn-a.akamaihd.net/steam/apps/'+str(used_appids[0])+'/header.jpg'
         img1='https://steamcdn-a.akamaihd.net/steam/apps/'+str(used_appids[1])+'/header.jpg'
         img2='https://steamcdn-a.akamaihd.net/steam/apps/'+str(used_appids[2])+'/header.jpg'
-    #appid=0
-    #if 'app' in split_str:
-    #    appid=split_str[split_str.index('app')+1]
-    #try:
-    #    page = requests.get('https://store.steampowered.com/app/'+appid).text
-    #except:
-    #    pass
-    #soup = bs4.BeautifulSoup(page, 'html.parser')
-    #temp_str=soup.find("meta",  property="og:title")['content']
-    #temp_idx=temp_str.rfind(" on Steam")
-    #if temp_idx>1:
-    #    temp_str=temp_str[:temp_idx]
-    #mydivs = soup.findAll("div", {"class": "user_reviews_summary_row"})
-    #div_strs=[]
-    #for div in mydivs:
-    #    try:
-    #        div_strs.append(div["data-tooltip-text"])
-    #    except:
-    #        pass
-    #header_im_url='https://steamcdn-a.akamaihd.net/steam/apps/'+appid+'/header.jpg'
-    #with open('20190124_model','rb') as file:
-    #    regressor = pickle.load(file)
-    #x=0
-    #if appid in os.listdir('20190124_ea_vecs'):
-    #    found_record=True
-    #    with open(os.path.join('20190124_ea_vecs',appid),'rb') as file:
-    #        v = pickle.load(file)
-    #    x=regressor.predict(v)[0]
-    #else:
-    #    found_record=False
     
     return render_template("game.html",output_str=output_string,error_page=error_page,name0=name0,name1=name1,name2=name2,url0=url0,url1=url1,url2=url2,
-                                img0=img0,img1=img1,img2=img2)
+                                img0=img0,img1=img1,img2=img2,ratio=  new_ratio  )
 
-@app.route('/db')
-def birth_page():
-    sql_query = """                                                             
-                SELECT * FROM birth_data_table WHERE delivery_method='Cesarean'\
-;                                                                               
-                """
-    query_results = pd.read_sql_query(sql_query,con)
-    births = ""
-    print(query_results[:10])
-    for i in range(0,10):
-        births += query_results.iloc[i]['birth_month']
-        births += "<br>"
-    return births
-
-@app.route('/db_fancy')
-def cesareans_page_fancy():
-    sql_query = """
-               SELECT index, attendant, birth_month FROM birth_data_table WHERE delivery_method='Cesarean';
-                """
-    query_results=pd.read_sql_query(sql_query,con)
-    births = []
-    for i in range(0,query_results.shape[0]):
-        births.append(dict(index=query_results.iloc[i]['index'], attendant=query_results.iloc[i]['attendant'], birth_month=query_results.iloc[i]['birth_month']))
-    return render_template('cesareans.html',births=births)
-
-@app.route('/input')
-def cesareans_input():
-    return render_template("input.html")
-
-@app.route('/output')
-def cesareans_output():
-  #pull 'birth_month' from input field and store it
-  patient = request.args.get('birth_month')
-    #just select the Cesareans  from the birth dtabase for the month that the user inputs
-  query = "SELECT index, attendant, birth_month FROM birth_data_table WHERE delivery_method='Cesarean' AND birth_month='%s'" % patient
-  print(query)
-  query_results=pd.read_sql_query(query,con)
-  print(query_results)
-  births = []
-  for i in range(0,query_results.shape[0]):
-      births.append(dict(index=query_results.iloc[i]['index'], attendant=query_results.iloc[i]['attendant'], birth_month=query_results.iloc[i]['birth_month']))
-      the_result = ModelIt(patient,births)
-  return render_template("output.html", births = births, the_result = the_result)
 
