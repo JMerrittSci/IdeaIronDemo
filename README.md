@@ -43,3 +43,5 @@ Jupyter Notebooks may require a range of other installed packages
 Skeleton of Flask app provided by Insight Data Science.
 
 Some pieces of code in Jupyter Notebooks taken from scikit-learn examples.
+
+Other code covered by MIT license.
