@@ -1,17 +1,11 @@
 from flask import render_template
 from flask import request 
 from flaskexample import app
-from sqlalchemy import create_engine
-from sqlalchemy_utils import database_exists, create_database
 from sklearn.ensemble import RandomForestRegressor
 import numpy as np
 import os
-import pickle
 import pandas as pd
 import psycopg2
-import requests
-import json
-import bs4
 
 @app.route('/', methods=['GET','POST'])
 #@app.route('/index')
