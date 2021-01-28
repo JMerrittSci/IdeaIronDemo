@@ -10,7 +10,7 @@
 ##               OVERVIEW                ##
 ###########################################
 
-The [Idea Iron](http://www.ideairon.com) is a web app designed to help game developers planning to
+The [Idea Iron]() is a web app designed to help game developers planning to
 release through Steam Early Access decide which features of their game to emphasize in marketing.
 
 Slides available [here](https://docs.google.com/presentation/d/e/2PACX-1vSlvM4BAkbkDRKvJf1udYOfSNDC3gM_kjhx2mqZky4pdqMdG5flQO9zDjtohztGHhBs2gDefdliAQi1/pub?slide=id.p).
